@@ -18,7 +18,9 @@ Function(BuildContext)? deletefunction;
           startActionPane: ActionPane(
               motion: StretchMotion() ,
               children: [
+
                 SlidableAction(onPressed: updatefunction,
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(9),topLeft: Radius.circular(9)),
                   icon: Icons.edit,
                   backgroundColor: Colors.grey,
                 )
@@ -28,6 +30,8 @@ Function(BuildContext)? deletefunction;
               children:[
                 SlidableAction(onPressed:deletefunction,
                   icon: Icons.delete,
+
+                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(9),topRight: Radius.circular(9)),
                   backgroundColor: Colors.red,
                 ),
               ]),
@@ -53,7 +57,6 @@ Function(BuildContext)? deletefunction;
 
 
     ),
-
 
     );
   }

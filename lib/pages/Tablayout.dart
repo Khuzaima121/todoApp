@@ -14,6 +14,16 @@ class Tablayout extends StatefulWidget {
 }
 
 class _TablayoutState extends State<Tablayout> {
+  updateItem(int index) {
+    setState(() {
+      db.todolist[index][0] = tdtitile.text;
+      db.todolist[index][1] = tddesc.text;
+      db.todolist[index][2] = false; // Reset checkbox state if needed
+      tdtitile.clear();
+      tddesc.clear();
+      db.Updatedatabse();
+    });
+  }
 
   void addItem() {
 
@@ -106,9 +116,7 @@ class _TablayoutState extends State<Tablayout> {
                     });
                   },
                   updatefunction: (context){
-                    setState(() {
-                      updateItem(index);
-                    });
+                    showUpdateDialog(context, index, updateItem(index));
                   },
                 );
               },

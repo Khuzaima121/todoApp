@@ -63,6 +63,17 @@ class _MobilelayoutState extends State<Mobilelayout> {
    });
    db.Updatedatabse();
   }
+  updateItem(int index) {
+    setState(() {
+      db.todolist[index][0] = tdtitile.text;
+      db.todolist[index][1] = tddesc.text;
+      db.todolist[index][2] = false; // Reset checkbox state if needed
+      tdtitile.clear();
+      tddesc.clear();
+      db.Updatedatabse();
+    });
+  }
+
   void showAddDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -141,9 +152,7 @@ class _MobilelayoutState extends State<Mobilelayout> {
                     });
                   },
                   updatefunction: (context){
-                    setState(() {
-                 showUpdateDialog(context, index);
-                    });
+                    showUpdateDialog(context, index, updateItem );
                   },
                 );
               },

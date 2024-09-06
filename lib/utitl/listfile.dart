@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todoooappppppp/data/databse.dart';
 
-// Global TextEditingControllers
 TextEditingController tdtitile = TextEditingController();
 TextEditingController tddesc = TextEditingController();
 final titleController = TextEditingController();
 final descController = TextEditingController();
 
-// The list of to-do items
 TodoDatabase db=new TodoDatabase();
 
 
@@ -20,18 +18,10 @@ void deleteItem(int index) {
   db.todolist.removeAt(index);
   db.Updatedatabse();
 }
-void updateItem(int index) {
-  db.todolist[index][0] = tdtitile.text;
-  db.todolist[index][1] = tddesc.text;
-  db.todolist[index][2] = false; // Reset checkbox state if needed
-  tdtitile.clear();
-  tddesc.clear();
-  db.Updatedatabse();
-}
 
 
 
-void showUpdateDialog(BuildContext context, int index) {
+void showUpdateDialog(BuildContext context, int index,Function updateitem) {
   tdtitile.text = db.todolist[index][0];
   tddesc.text = db.todolist[index][1];
 
@@ -66,7 +56,7 @@ void showUpdateDialog(BuildContext context, int index) {
         actions: [
           TextButton(
             onPressed: () {
-              updateItem(index);
+              updateitem(index);
               Navigator.of(context).pop();
             },
             child: const Text("Update task", style: TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold)),

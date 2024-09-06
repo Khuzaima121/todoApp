@@ -12,6 +12,16 @@ class WebLayout extends StatefulWidget {
 }
 
 class _WebLayoutState extends State<WebLayout> {
+  updateItem(int index) {
+    setState(() {
+      db.todolist[index][0] = tdtitile.text;
+      db.todolist[index][1] = tddesc.text;
+      db.todolist[index][2] = false; // Reset checkbox state if needed
+      tdtitile.clear();
+      tddesc.clear();
+      db.Updatedatabse();
+    });
+  }
   void addItem() {
 
     setState(() {
@@ -103,7 +113,7 @@ class _WebLayoutState extends State<WebLayout> {
                   },
                   updatefunction: (context){
                     setState(() {
-                      showUpdateDialog(context, index);
+                      showUpdateDialog(context, index,updateItem(index));
                     });
                   },
                 );
